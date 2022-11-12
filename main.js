@@ -28,7 +28,7 @@ const sorteoFraterno = new Sorteos('fraterno', 100, new Date('11/01/2022'), 200,
 sorteoFraterno.enVenta = sorteoFraterno.abierto();
 sorteosActivos.push(sorteoFraterno);
 
-console.log(sorteosActivos);
+////////////console.log(sorteosActivos);
 
 //Construyo la función para escojer el Sorteo
 const escojaSorteo = () => {
@@ -64,14 +64,14 @@ do{
 alert(`Por favor, ingrese baudi o fraterno para acceder al sorteo`);
 
 const sorteoActual = escojaSorteo();
-console.log(sorteoActual);
+////////////console.log(sorteoActual);
 
 
 
 //Voy a crear el array con todos los números, y sus atributos
 
 const sorteoActualObjeto = sorteosActivos.filter(i => i.nombre === sorteoActual);
-console.log(sorteoActualObjeto);
+////////////console.log(sorteoActualObjeto);
 
 //Inicialmente, voy a inventar un for para ir creando elementos dentro del array, y su estado de disponibilidad
 
@@ -91,7 +91,7 @@ const construirNumeros = (arrayDeNumeros, largo) => {
         let bonocolaboracion = new Bono(i);
         arrayDeNumeros.push(bonocolaboracion);
     }
-    console.log(arrayDeNumeros);
+    ////////////console.log(arrayDeNumeros);
 
     //Voy a inventar un estado de disponibilidad, según una regla tonta: múltiplos de 3 pagados
 
@@ -104,7 +104,7 @@ const construirNumeros = (arrayDeNumeros, largo) => {
             }
         }
     );
-    console.log(arrayDeNumeros);
+    ////////////console.log(arrayDeNumeros);
 };
 
 const elijaSusNumeros = (array) => {
