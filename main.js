@@ -24,7 +24,7 @@ const sorteoBaudi = new Sorteos('baudi', 100, new Date('12/16/2022'), 300, null)
 sorteoBaudi.enVenta=sorteoBaudi.abierto();
 sorteosActivos.push(sorteoBaudi);
 
-const sorteoFraterno = new Sorteos('fraterno', 100, new Date('11/01/2022'),200, 12);
+const sorteoFraterno = new Sorteos('fraterno', 100, new Date('11/01/2022'),200, 11);
 sorteoFraterno.enVenta=sorteoFraterno.abierto();
 sorteosActivos.push(sorteoFraterno);
 
@@ -75,28 +75,40 @@ class Bono {
 }
 
 const numeros=[];
-for(let i=0; i<sorteoActualObjeto[0].cantNumeros;i++){
-    let bonocolaboracion = new Bono (i);
-    numeros.push(bonocolaboracion);
-}
-console.log(numeros);
 
-//Voy a inventar un estado de disponibilidad, según una regla tonta: múltiplos de 3 pagados
-
-numeros.forEach(
-    i => { 
-        if(i.id%3===0) {
-            i.pagado=true;
-            i.reservado=true;
-            i.comprador=`La Mona Jimenez`;
-        }
+const construirNumeros = (arrayDeNumeros,largo) => {
+    for(let i=0; i<largo;i++){
+        let bonocolaboracion = new Bono (i);
+        arrayDeNumeros.push(bonocolaboracion);
     }
-);
-console.log(numeros);
+    console.log(arrayDeNumeros);
+
+    //Voy a inventar un estado de disponibilidad, según una regla tonta: múltiplos de 3 pagados
+
+    arrayDeNumeros.forEach(
+        e => { 
+            if(e.id%3===0) {
+                e.pagado=true;
+                e.reservado=true;
+                e.comprador=`La Mona Jimenez`;
+            }
+        }
+    );
+    console.log(arrayDeNumeros);
+};
+
+construirNumeros(numeros,sorteoActualObjeto[0].cantNumeros);
 
 if(sorteoActualObjeto[0].enVenta){
     alert(`Este sorteo se encuentra Abierto, pase a escojer sus números`);
-
 } else {
     alert(`Este sorteo se encuentra Cerrado, y el ganador ha sido el ${sorteoActualObjeto[0].ganador}`);
+    idGanador=sorteoActualObjeto[0].ganador;
+    if(numeros[idGanador].pagado){
+        alert(`El número ha sido vendido a ${numeros[idGanador].comprador}`);
+    } else {
+        alert(`El premio ha quedado vacante.`)
+    }
 }
+
+alert(`Gracias por participar con nosotros.`)
