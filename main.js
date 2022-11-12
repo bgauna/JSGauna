@@ -24,7 +24,7 @@ const sorteoBaudi = new Sorteos('baudi', 100, new Date('12/16/2022'), 300, null)
 sorteoBaudi.enVenta = sorteoBaudi.abierto();
 sorteosActivos.push(sorteoBaudi);
 
-const sorteoFraterno = new Sorteos('fraterno', 100, new Date('11/01/2022'), 200, 11);
+const sorteoFraterno = new Sorteos('fraterno', 100, new Date('11/01/2022'), 200, 12);
 sorteoFraterno.enVenta = sorteoFraterno.abierto();
 sorteosActivos.push(sorteoFraterno);
 
@@ -51,12 +51,22 @@ const escojaSorteo = () => {
     return participarSorteo;
 }
 
+
+let nombre, seguro='';
+do{
+    nombre=prompt(`Ingrese su nombre`);
+    seguro = prompt(`Tu nombre es ${nombre}, ¿lo confirmás? Ingrese SI para continuar`)
+    seguro = seguro.toLowerCase();
+} while (seguro!=='si');
+
 //llamo la función para escojer el sorteo
 
 alert(`Por favor, ingrese baudi o fraterno para acceder al sorteo`);
 
 const sorteoActual = escojaSorteo();
 console.log(sorteoActual);
+
+
 
 //Voy a crear el array con todos los números, y sus atributos
 
@@ -113,6 +123,7 @@ const elijaSusNumeros = (array) => {
         numeroReservado = parseInt(prompt(`Revise el valor ingresado \n\n` + textoCuadro));
     }
     array[numeroReservado].reservado = true;
+    array[numeroReservado].comprador = nombre;
     totalNumeros = totalNumeros + 1;
     respuesta = prompt(`Desea escoger otro número? Ingrese SI o NO`)
     respuesta = respuesta.toLowerCase()
