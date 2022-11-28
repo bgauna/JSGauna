@@ -1,10 +1,32 @@
+* {
+    padding:0;
+    margin:0;
+}
+
+p{
+    padding:0;
+    margin:0;
+}
+#referencias{
+    background-color: rgb(255, 237, 240);
+    padding: 1vw;
+    margin-top:3vw;
+    margin-bottom: 3vw;
+}
 #grillaDeNumeros {
-    background-color: black;
+    background-color: gray;
+    padding: 1vw;
 }
 
 .estiloDeNumero{
     border-radius: 50%;
     border: black 2px solid;
+    text-align: center;
+    display: inline-block;
+    width: 5.5vw;
+    height: 5.5vw;
+    margin-top:0.25vw;
+    margin-bottom:0.25vw;
 }
 
 .disponible{

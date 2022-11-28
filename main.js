@@ -51,13 +51,24 @@ const escojaSorteo = () => {
     return participarSorteo;
 }
 
+const usuario ={};
 
-let nombre, seguro='';
-do{
-    nombre=prompt(`Ingrese su nombre`);
-    seguro = prompt(`Tu nombre es ${nombre}, ¿lo confirmás? Ingrese SI para continuar`)
-    seguro = seguro.toLowerCase();
-} while (seguro!=='si');
+
+const guardaNombre = () => {
+    usuario.nombre = nombre.value;
+    console.log(usuario.nombre);
+}
+
+
+const nombre = document.getElementById('nombre');
+const btnNombre=document.getElementById('btnNombre');
+btnNombre.onclick = guardaNombre;
+nombre.onkeydown = (evento) => {
+    if (evento.key==='Enter'){
+        guardaNombre();
+    }
+}
+
 
 //llamo la función para escojer el sorteo
 
@@ -105,12 +116,23 @@ const construirNumeros = (arrayDeNumeros, largo) => {
         }
     );
     
-    let grillaDeRifas=document.getElementById("grillaDeNumeros");
+    const grillaDeRifas=document.getElementById("grillaDeNumeros");
+    grillaDeRifas.innerHTML = ``;
     arrayDeNumeros.forEach(
         e => {
-            grillaDeRifas.innerHTML += `
-            
-            `
+            if(e.pagado&&e.reservado){
+                grillaDeRifas.innerHTML += `<div id="n${e.id}" class="estiloDeNumero pagado d-flex align-items-center justify-content-center">
+                <p>${e.id}</p>
+                </div>`
+            } else if (e.reservado&&!e.pagado){
+                grillaDeRifas.innerHTML += `<div id="n${e.id}" class="estiloDeNumero reservado d-flex align-items-center justify-content-center">
+                <p>${e.id}</p>
+                </div>`
+            } else {
+                grillaDeRifas.innerHTML += `<div id="n${e.id}" class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
+                <p>${e.id}</p>
+                </div>`
+            }
         }
     );
 
