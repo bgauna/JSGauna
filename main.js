@@ -104,6 +104,16 @@ const construirNumeros = (arrayDeNumeros, largo) => {
             }
         }
     );
+    
+    let grillaDeRifas=document.getElementById("grillaDeNumeros");
+    arrayDeNumeros.forEach(
+        e => {
+            grillaDeRifas.innerHTML += `
+            
+            `
+        }
+    );
+
     ////////////console.log(arrayDeNumeros);
 };
 

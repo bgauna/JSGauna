@@ -1,0 +1,20 @@
+#grillaDeNumeros {
+    background-color: black;
+}
+
+.estiloDeNumero{
+    border-radius: 50%;
+    border: black 2px solid;
+}
+
+.disponible{
+    background-color: white;
+}
+
+.reservado{
+    background-color: lightgoldenrodyellow;
+}
+
+.pagado{
+    background-color: lightblue;
+}
