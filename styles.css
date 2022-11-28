@@ -7,6 +7,13 @@ p{
     padding:0;
     margin:0;
 }
+
+#sinNumeros{
+    color:white;
+    font-weight: bold;
+    height: 200px;
+}
+
 #referencias{
     background-color: rgb(255, 237, 240);
     padding: 1vw;
@@ -39,4 +46,8 @@ p{
 
 .pagado{
     background-color: lightblue;
+}
+
+.seleccionado{
+    background-color: orange;
 }

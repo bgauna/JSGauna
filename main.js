@@ -1,4 +1,17 @@
+///////  DOM DOM DOM
+
+const nombre = document.getElementById('nombre');
+const btnNombre = document.getElementById('btnNombre');
+const nombreGuardado = document.getElementById('nombreGuardado');
+
+const rifas = document.getElementById('rifas');
+const btnRifa = document.getElementById('btnRifa');
+
+const grillaDeRifas = document.getElementById("grillaDeNumeros");
+
+
 //Ingrese el sorteo que participará
+let sorteoActual = 0; //puede tomar índice numero
 const sorteosActivos = [];
 
 //Creo la clase Sorteos, así construyo los objetos, revisar el método abierto, porque no usé la clase Date
@@ -19,73 +32,6 @@ class Sorteos {
     }
 }
 
-//Construyo los sorteos y los agrego al array sorteosActivos
-const sorteoBaudi = new Sorteos('baudi', 100, new Date('12/16/2022'), 300, null);
-sorteoBaudi.enVenta = sorteoBaudi.abierto();
-sorteosActivos.push(sorteoBaudi);
-
-const sorteoFraterno = new Sorteos('fraterno', 100, new Date('11/01/2022'), 200, 12);
-sorteoFraterno.enVenta = sorteoFraterno.abierto();
-sorteosActivos.push(sorteoFraterno);
-
-////////////console.log(sorteosActivos);
-
-//Construyo la función para escojer el Sorteo
-const escojaSorteo = () => {
-    let participarSorteo, indice, repetir = false;
-    participarSorteo = prompt(`¿De qué sorteo quiere participar?`);
-    do {
-        while (!participarSorteo || repetir === true) {
-            participarSorteo = prompt(`No ingresaste un valor válido.\n\n¿De qué sorteo quiere participar?`);
-            repetir = false;
-        }
-        participarSorteo = participarSorteo.toLowerCase();
-        console.log(participarSorteo);
-        indice = sorteosActivos.find(n => n.nombre === participarSorteo);
-        if (indice == undefined) {
-            repetir = true;
-        } else {
-            repetir = false;
-        }
-    } while (repetir);
-    return participarSorteo;
-}
-
-const usuario ={};
-
-
-const guardaNombre = () => {
-    usuario.nombre = nombre.value;
-    console.log(usuario.nombre);
-}
-
-
-const nombre = document.getElementById('nombre');
-const btnNombre=document.getElementById('btnNombre');
-btnNombre.onclick = guardaNombre;
-nombre.onkeydown = (evento) => {
-    if (evento.key==='Enter'){
-        guardaNombre();
-    }
-}
-
-
-//llamo la función para escojer el sorteo
-
-alert(`Por favor, ingrese baudi o fraterno para acceder al sorteo`);
-
-const sorteoActual = escojaSorteo();
-////////////console.log(sorteoActual);
-
-
-
-//Voy a crear el array con todos los números, y sus atributos
-
-const sorteoActualObjeto = sorteosActivos.filter(i => i.nombre === sorteoActual);
-////////////console.log(sorteoActualObjeto);
-
-//Inicialmente, voy a inventar un for para ir creando elementos dentro del array, y su estado de disponibilidad
-
 class Bono {
     constructor(id) {
         this.id = id;
@@ -95,96 +41,209 @@ class Bono {
     }
 }
 
-const numeros = [];
 
-const construirNumeros = (arrayDeNumeros, largo) => {
-    for (let i = 0; i < largo; i++) {
-        let bonocolaboracion = new Bono(i);
-        arrayDeNumeros.push(bonocolaboracion);
+
+//Construyo los sorteos y los agrego al array sorteosActivos
+
+const sorteoSeleccione = new Sorteos('Seleccione Sorteo', 10, new Date('11/01/2022'), 10, 2);
+sorteoSeleccione.enVenta = sorteoSeleccione.abierto();
+sorteosActivos.push(sorteoSeleccione);
+
+const sorteoBaudi = new Sorteos('baudi', 100, new Date('12/16/2022'), 300, null);
+sorteoBaudi.enVenta = sorteoBaudi.abierto();
+sorteosActivos.push(sorteoBaudi);
+
+const sorteoTercer = new Sorteos('tercer', 25, new Date('12/25/2022'), 100, null);
+sorteoTercer.enVenta = sorteoTercer.abierto();
+sorteosActivos.push(sorteoTercer);
+
+console.log(sorteosActivos);
+
+
+
+const construirSorteos = () => {
+    let primerElemento = true;
+    sorteosActivos.forEach(e => {
+        const optionSorteo = document.createElement('option');
+        if (primerElemento) { optionSorteo.innerText = `${e.nombre}`; primerElemento = false; } else {
+            optionSorteo.innerText = `${e.nombre} : sortea el ${e.fechaSorteo}`
+        }
+        rifas.append(optionSorteo);
+        //console.log(sorteosActivos);
+    });
+}
+
+construirSorteos();
+//console.log(sorteosActivos);
+
+
+//Construto el objeto Usuario  >>>>>> NO FUNCA EL STORAGE
+const usuario = {};
+let usuari; ////////REVISAR
+
+const guardaNombre = () => {
+    usuario.nombre = nombre.value;
+    localStorage.setItem('user',JSON.stringify(usuario)); /////// REVISAR
+    console.log(usuario.nombre,localStorage.getItem('user'));
+}
+
+/* usuari = JSON.parse(localStorage.getItem('user'));
+if(usuario.nombre){
+    nombreGuardado.innerText=`Estás comprando tus números como ${usuario.nombre}`;
+} else {
+    nombreGuardado.innerText=``;
+} */
+
+const disponibles=[];
+
+const construirNumeros = () => {
+    console.log(numeros.length);
+    if (numeros.length !== 0) {
+        const longFor = numeros.length;
+        for (let i = 0; i < longFor; i++) {
+            numeros.pop();
+        }
+    }
+    if (disponibles.length !== 0) {
+        const longFor = disponibles.length;
+        for (let i = 0; i < longFor; i++) {
+            disponibles.pop();
+        }
+    }
+    //console.log(sorteosActivos);
+    for (let i = 0; i < sorteoActualObjeto.cantNumeros; i++) {
+        const bonocolaboracion = new Bono(i);
+        numeros.push(bonocolaboracion);
     }
     ////////////console.log(arrayDeNumeros);
-
     //Voy a inventar un estado de disponibilidad, según una regla tonta: múltiplos de 3 pagados
-
-    arrayDeNumeros.forEach(
+    numeros.forEach(
         e => {
-            if (e.id % 3 === 0) {
+            if (e.id % 3 !== 0) {
                 e.pagado = true;
                 e.reservado = true;
                 e.comprador = `La Mona Jimenez`;
             }
         }
     );
-    
-    const grillaDeRifas=document.getElementById("grillaDeNumeros");
     grillaDeRifas.innerHTML = ``;
-    arrayDeNumeros.forEach(
+    if(sorteoActual!==0){
+    numeros.forEach(
         e => {
-            if(e.pagado&&e.reservado){
-                grillaDeRifas.innerHTML += `<div id="n${e.id}" class="estiloDeNumero pagado d-flex align-items-center justify-content-center">
+            if (e.pagado && e.reservado) {
+                grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero pagado d-flex align-items-center justify-content-center">
                 <p>${e.id}</p>
-                </div>`
-            } else if (e.reservado&&!e.pagado){
-                grillaDeRifas.innerHTML += `<div id="n${e.id}" class="estiloDeNumero reservado d-flex align-items-center justify-content-center">
+                </div></div>`;
+                const estado = false;
+                disponibles.push(estado);
+            } else if (e.reservado && !e.pagado) {
+                grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero reservado d-flex align-items-center justify-content-center">
                 <p>${e.id}</p>
-                </div>`
+                </div></div>`;
+                const estado = false;
+                disponibles.push(estado);
             } else {
-                grillaDeRifas.innerHTML += `<div id="n${e.id}" class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
+                grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
                 <p>${e.id}</p>
-                </div>`
+                </div></div>`;
+                const estado = true;
+                disponibles.push(estado);
             }
         }
     );
-
+    console.log(disponibles);
+    } else {
+        grillaDeRifas.innerHTML += `<div id="sinNumeros" class="d-flex align-items-center justify-content-center">
+                <p>Seleccione un Sorteo y haga click en Cargar Números</p>
+                </div>`
+    }
+    //console.log(sorteosActivos);
     ////////////console.log(arrayDeNumeros);
 };
 
-const elijaSusNumeros = (array) => {
-    let arraylimpio = [];
-    arraylimpio = array.filter(e => e.reservado === false)
-    let textoArray='', numeroReservado, respuesta;
-    for (let contador=0;contador<arraylimpio.length;contador++){
-        textoArray += arraylimpio[contador].id;
-        if(contador !== arraylimpio.length){
-            textoArray += ', ';
-        }
-    }
-    let textoCuadro = `Los números disponibles son \n` + textoArray;
-    numeroReservado = parseInt(prompt(textoCuadro));
-    while (isNaN(numeroReservado) || numeroReservado == undefined || !(numeroReservado>=0 && numeroReservado<sorteoActualObjeto[0].cantNumeros) || array[numeroReservado].reservado) {
-        numeroReservado = parseInt(prompt(`Revise el valor ingresado \n\n` + textoCuadro));
-    }
-    array[numeroReservado].reservado = true;
-    array[numeroReservado].comprador = nombre;
-    totalNumeros = totalNumeros + 1;
-    respuesta = prompt(`Desea escoger otro número? Ingrese SI o NO`)
-    respuesta = respuesta.toLowerCase()
-    while (!(respuesta==='si'||respuesta==='no')){
-        respuesta = prompt(`Ingresó una opción incorrecta.\nDesea escoger otro número? Ingrese SI o NO`)
-        respuesta = respuesta.toLowerCase()
-    }
-    if (respuesta === 'si') {
-        elijaSusNumeros(array);
-    } else if (respuesta === 'no') {
-        return;
-    }
-}
-
-let totalNumeros=0;
-construirNumeros(numeros, sorteoActualObjeto[0].cantNumeros);
-
-if (sorteoActualObjeto[0].enVenta) {
-    alert(`Este sorteo se encuentra Abierto, pase a escojer sus números`);
-    elijaSusNumeros(numeros);
-    alert(`Ha escogido ${totalNumeros} números, por lo que debe abonar $${totalNumeros*sorteoActualObjeto[0].precio}.- Realice una transferencia por MP a bgauna.mp e informe al nro 3764580514.-`)
-} else {
-    alert(`Este sorteo se encuentra Cerrado, y el ganador ha sido el ${sorteoActualObjeto[0].ganador}`);
-    idGanador = sorteoActualObjeto[0].ganador;
-    if (numeros[idGanador].pagado) {
-        alert(`El número ha sido vendido a ${numeros[idGanador].comprador}`);
+//Construyo la función para escojer el Sorteo
+const guardaRifa = () => {
+    //console.log(sorteosActivos);
+    sorteoActual = rifas.selectedIndex;
+    //console.log(sorteoActual, sorteosActivos, sorteosActivos[sorteoActual]);
+    if (sorteoActual !== 0) {
+        sorteoActualObjeto.cantNumeros = sorteosActivos[sorteoActual].cantNumeros;
+        sorteoActualObjeto.enVenta = sorteosActivos[sorteoActual].enVenta;
+        sorteoActualObjeto.fechaSorteo = sorteosActivos[sorteoActual].fechaSorteo;
+        sorteoActualObjeto.ganador = sorteosActivos[sorteoActual].ganador;
+        sorteoActualObjeto.nombre = sorteosActivos[sorteoActual].nombre;
+        sorteoActualObjeto.precio = sorteosActivos[sorteoActual].precio;
     } else {
-        alert(`El premio ha quedado vacante.`)
+        sorteoActualObjeto.cantNumeros = sorteoSeleccione.cantNumeros;
+        sorteoActualObjeto.enVenta = sorteoSeleccione.enVenta;
+        sorteoActualObjeto.fechaSorteo = sorteoSeleccione.fechaSorteo;
+        sorteoActualObjeto.ganador = sorteoSeleccione.ganador;
+        sorteoActualObjeto.nombre = sorteoSeleccione.nombre;
+        sorteoActualObjeto.precio = sorteoSeleccione.precio;
+    }
+    
+    console.log(sorteoActualObjeto);
+    construirNumeros();
+}
+
+
+
+//llamo la función para escojer el sorteo
+
+//alert(`Por favor, ingrese baudi o fraterno para acceder al sorteo`);
+
+
+console.log(sorteoActual);
+
+//Voy a crear el array con todos los números, y sus atributos
+const sorteoActualObjeto = sorteosActivos[sorteoActual]; //OK, no borrar
+//console.log(sorteosActivos);
+console.log(sorteoActualObjeto);
+
+//Inicialmente, voy a inventar un for para ir creando elementos dentro del array, y su estado de disponibilidad
+
+
+
+const numeros = [];
+
+let totalNumeros = 0;
+construirNumeros();
+
+const rifasCompradas=[];
+
+/////////// EVENTOS
+
+btnNombre.onclick = guardaNombre;
+nombre.onkeydown = (evento) => {
+    if (evento.key === 'Enter') {
+        guardaNombre();
     }
 }
 
-alert(`Gracias por participar con nosotros.`)
+btnRifa.onclick = guardaRifa;
+
+grillaDeRifas.onclick = (evento) => {
+    let indice=-4;
+    console.log(evento, evento.target.innerText, evento.target.innerText.length);
+    let seleccionado = parseInt(evento.target.innerText);
+    if(evento.target.innerText.length>4) {seleccionado = null;}
+    indice=rifasCompradas.indexOf(seleccionado); //si este valor es -1, debo SELECCIONAR, sino DESELECC
+    console.log(seleccionado, indice,rifasCompradas.indexOf(seleccionado));
+    if(indice>=0){
+        rifasCompradas.splice(indice,1);    //SACAR el elemento de los comprados, DESELECCIONARLO
+
+    } else if (seleccionado!==null) {
+        rifasCompradas.push(seleccionado);    //AGREGAR el elemento a los comprador, seleccionarlo
+        
+    }
+    console.log(rifasCompradas);
+}
+
+
+/* grillaDeRifas.innerHTML = `<div class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
+                <p>${e.id}</p>
+                </div></div>`;
+                const estado = true;
+                disponibles.push(estado); */
+
+
