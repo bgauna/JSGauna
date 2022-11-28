@@ -39,7 +39,10 @@ p{
 .disponible{
     background-color: white;
 }
-
+.disponible:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
 .reservado{
     background-color: lightgoldenrodyellow;
 }
@@ -50,4 +53,13 @@ p{
 
 .seleccionado{
     background-color: orange;
+}
+.seleccionado:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#aComprar{
+    padding: 5vw 5%;
+
 }

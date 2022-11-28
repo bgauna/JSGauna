@@ -9,6 +9,7 @@ const btnRifa = document.getElementById('btnRifa');
 
 const grillaDeRifas = document.getElementById("grillaDeNumeros");
 
+const aComprar = document.getElementById('aComprar');
 
 //Ingrese el sorteo que participará
 let sorteoActual = 0; //puede tomar índice numero
@@ -83,8 +84,9 @@ let usuari; ////////REVISAR
 
 const guardaNombre = () => {
     usuario.nombre = nombre.value;
-    localStorage.setItem('user',JSON.stringify(usuario)); /////// REVISAR
-    console.log(usuario.nombre,localStorage.getItem('user'));
+    localStorage.setItem('user', JSON.stringify(usuario)); /////// REVISAR
+    console.log(usuario.nombre, localStorage.getItem('user'));
+    actualizarPagar();
 }
 
 /* usuari = JSON.parse(localStorage.getItem('user'));
@@ -94,7 +96,7 @@ if(usuario.nombre){
     nombreGuardado.innerText=``;
 } */
 
-const disponibles=[];
+const disponibles = [];
 
 const construirNumeros = () => {
     console.log(numeros.length);
@@ -127,31 +129,31 @@ const construirNumeros = () => {
         }
     );
     grillaDeRifas.innerHTML = ``;
-    if(sorteoActual!==0){
-    numeros.forEach(
-        e => {
-            if (e.pagado && e.reservado) {
-                grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero pagado d-flex align-items-center justify-content-center">
+    if (sorteoActual !== 0) {
+        numeros.forEach(
+            e => {
+                if (e.pagado && e.reservado) {
+                    grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero pagado d-flex align-items-center justify-content-center">
                 <p>${e.id}</p>
                 </div></div>`;
-                const estado = false;
-                disponibles.push(estado);
-            } else if (e.reservado && !e.pagado) {
-                grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero reservado d-flex align-items-center justify-content-center">
+                    const estado = false;
+                    disponibles.push(estado);
+                } else if (e.reservado && !e.pagado) {
+                    grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero reservado d-flex align-items-center justify-content-center">
                 <p>${e.id}</p>
                 </div></div>`;
-                const estado = false;
-                disponibles.push(estado);
-            } else {
-                grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
+                    const estado = false;
+                    disponibles.push(estado);
+                } else {
+                    grillaDeRifas.innerHTML += `<div id="n${e.id}"> <div class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
                 <p>${e.id}</p>
                 </div></div>`;
-                const estado = true;
-                disponibles.push(estado);
+                    const estado = true;
+                    disponibles.push(estado);
+                }
             }
-        }
-    );
-    console.log(disponibles);
+        );
+        console.log(disponibles);
     } else {
         grillaDeRifas.innerHTML += `<div id="sinNumeros" class="d-flex align-items-center justify-content-center">
                 <p>Seleccione un Sorteo y haga click en Cargar Números</p>
@@ -181,7 +183,7 @@ const guardaRifa = () => {
         sorteoActualObjeto.nombre = sorteoSeleccione.nombre;
         sorteoActualObjeto.precio = sorteoSeleccione.precio;
     }
-    
+
     console.log(sorteoActualObjeto);
     construirNumeros();
 }
@@ -200,16 +202,24 @@ const sorteoActualObjeto = sorteosActivos[sorteoActual]; //OK, no borrar
 //console.log(sorteosActivos);
 console.log(sorteoActualObjeto);
 
-//Inicialmente, voy a inventar un for para ir creando elementos dentro del array, y su estado de disponibilidad
-
-
-
 const numeros = [];
 
 let totalNumeros = 0;
 construirNumeros();
 
-const rifasCompradas=[];
+const rifasCompradas = [];
+
+
+const actualizarPagar = () => {
+    aComprar.innerHTML=``;
+    if(rifasCompradas.length>0&&usuario.nombre){
+        let N=rifasCompradas.length;
+        aComprar.innerHTML += `<p>${usuario.nombre}, has elegido ${N} números.</p><p>Los números elegidos son: ${rifasCompradas.join(', ')}.</p><p>El total de la compra es $${N*sorteoActualObjeto.precio}.</p><p>Si hace click en el botón, va a reservar los números por 24hs.\nPara finalizar su compra, debe transferir el dinero al alias bgauna.mp</p><p>¡Gracias por confiar en nuestros servicios y apoyar a las ONG que trabajan con nosotros!</p>`;
+        aComprar.innerHTML += `<button id="btnPago">Reservar los ${N} números y avanzar a la plataforma de pagos ($${N*sorteoActualObjeto.precio})</button>`;
+    }
+}
+
+
 
 /////////// EVENTOS
 
@@ -223,27 +233,25 @@ nombre.onkeydown = (evento) => {
 btnRifa.onclick = guardaRifa;
 
 grillaDeRifas.onclick = (evento) => {
-    let indice=-4;
+    let indice = -4;
     console.log(evento, evento.target.innerText, evento.target.innerText.length);
     let seleccionado = parseInt(evento.target.innerText);
-    if(evento.target.innerText.length>4) {seleccionado = null;}
-    indice=rifasCompradas.indexOf(seleccionado); //si este valor es -1, debo SELECCIONAR, sino DESELECC
-    console.log(seleccionado, indice,rifasCompradas.indexOf(seleccionado));
-    if(indice>=0){
-        rifasCompradas.splice(indice,1);    //SACAR el elemento de los comprados, DESELECCIONARLO
-
-    } else if (seleccionado!==null) {
+    if (evento.target.innerText.length > 4) { seleccionado = null; }
+    indice = rifasCompradas.indexOf(seleccionado); //si este valor es -1, debo SELECCIONAR, sino DESELECC
+    console.log(seleccionado, indice, rifasCompradas.indexOf(seleccionado));
+    if (disponibles[seleccionado] && indice >= 0) {
+        rifasCompradas.splice(indice, 1);    //SACAR el elemento de los comprados, DESELECCIONARLO
+        const numeroSeleccionado = document.getElementById(`n${seleccionado}`)
+        numeroSeleccionado.innerHTML = `<div class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
+                <p>${seleccionado}</p>
+                </div></div>`;
+    } else if (disponibles[seleccionado] && seleccionado !== null) {
         rifasCompradas.push(seleccionado);    //AGREGAR el elemento a los comprador, seleccionarlo
-        
+        const numeroSeleccionado = document.getElementById(`n${seleccionado}`)
+        numeroSeleccionado.innerHTML = `<div class="estiloDeNumero seleccionado d-flex align-items-center justify-content-center">
+                <p>${seleccionado}</p>
+                </div></div>`;
     }
     console.log(rifasCompradas);
+    actualizarPagar();
 }
-
-
-/* grillaDeRifas.innerHTML = `<div class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
-                <p>${e.id}</p>
-                </div></div>`;
-                const estado = true;
-                disponibles.push(estado); */
-
-
