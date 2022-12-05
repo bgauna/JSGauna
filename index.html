@@ -4,29 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4d3d764a3f.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <title>Venta de Bono Colaboración</title>
 </head>
 <body>
-    <header>
-        <div>
-            
+    <header class="container d-flex">
+        <div class="d-flex align-items-center">
+            <div>
+                <i class="fa-solid fa-seedling fa-5x"></i>
+            </div>
+            <div>
+                <h1>Tomá Suerte</h1>
+            </div>
         </div>
         <div>
 
         </div>
     </header>
-    <h1 class="container">Esta es una RIFA.</h1>
-    <h2 class="container">¡A ganar!</h2>
-    <p class="container">Sé que tienen nombres pedorros, baudi y tercer, pero ya lo mejoraré :) <br><br><br></p>
+    <main class="container">
+        <h2 class="centrarTexto">Bienvenido a la Web de Suerte más copada de toda la internet.</h2>
+        <h3 class="centrarTexto">¿Por qué decimos que tenemos Suerte?</h3>
+        <p class="centrarTexto">Porque todos los sorteos que ves acá atienden a una causa benéfica. En esta web sólo encontrarás Talonarios asociados a Bonos Colaboración de ONGs. Y creeme que colaborar con ellas, te hace canchero. Y a ellas, suertudas.</p>
+    </main>
+    <section class="container">
+        <h2 class="centrarTexto">¡Bien, empecemos!</h2>
+        <div id="datos" class="row d-inline-flex justify-content-around">
+            <div class="d-inline-flex align-items-center justify-content-center col-12 col-md-6 p-2">
+                <p>
+                    ¿Cómo es tu nombre?
+                </p>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+            </div>
+            <div class="d-inline-flex align-items-center justify-content-center col-12 col-md-6 p-2">
+                <p>
+                    ¿Cuál es tu <span><i class="fa-brands fa-whatsapp"></i></span>?
+                </p>
+                <input id="wapp" type="text" name="wapp" placeholder="3764 123456">
+            </div>
+            <div class="d-inline-flex align-items-center justify-content-center col-12 col-md-6 p-2">
+                <p>
+                    ¿Y tu correo?
+                </p>
+                <input id="email" type="email" name="email" placeholder="mi@correo.com">
+            </div>
+            <div class="col-12 col-md-6 d-flex justify-content-center p-2"><button id="btnNombre">Listo!</button></div>
+        </div>
+        <div class="row">
+            <h3 id="nombreGuardado" class="centrarTexto p-2 col-10"></h3>
+            <div id="modificarNombre" class="col-2 d-flex align-items-center justify-content-end">
+                <button style="font-size: 10px;">Modificar Nombre</button> <!--Esto debe ir dentro del innerHTML-->
+            </div>
+        </div>
+    </section>
 
-    <div class="container">
-        <h3>Ingrese su nombre:</h3>
-        <input type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
-        <button id="btnNombre">Listo!</button>
-        <h3 id="nombreGuardado"></h3>
-    </div>
 
     <div class="container">
         <h3>Seleccione el nombre de la rifa:</h3>
@@ -78,7 +110,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
  
-    <script src="./main.js"></script>
+    <script src="./js/main.js"></script>
 
 </body>
 </html>
