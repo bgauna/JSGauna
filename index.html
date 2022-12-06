@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/4d3d764a3f.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
     <title>Venta de Bono Colaboración</title>
 </head>
+
 <body>
-    <header class="container d-flex">
+    <header class="container d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
             <div>
                 <i class="fa-solid fa-seedling fa-5x"></i>
@@ -19,14 +22,22 @@
                 <h1>Tomá Suerte</h1>
             </div>
         </div>
-        <div>
-
+        <div class="pe-5">
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>Nuevo Sorteo</li>
+                    <li>Contacto</li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main class="container">
         <h2 class="centrarTexto">Bienvenido a la Web de Suerte más copada de toda la internet.</h2>
         <h3 class="centrarTexto">¿Por qué decimos que tenemos Suerte?</h3>
-        <p class="centrarTexto">Porque todos los sorteos que ves acá atienden a una causa benéfica. En esta web sólo encontrarás Talonarios asociados a Bonos Colaboración de ONGs. Y creeme que colaborar con ellas, te hace canchero. Y a ellas, suertudas.</p>
+        <p class="centrarTexto">Porque todos los sorteos que ves acá atienden a una causa benéfica. En esta web sólo
+            encontrarás Talonarios asociados a Bonos Colaboración de ONGs. Y creeme que colaborar con ellas, te hace
+            canchero. Y a ellas, suertudas.</p>
     </main>
     <section class="container">
         <h2 class="centrarTexto">¡Bien, empecemos!</h2>
@@ -54,63 +65,105 @@
         <div class="row">
             <h3 id="nombreGuardado" class="centrarTexto p-2 col-10"></h3>
             <div id="modificarNombre" class="col-2 d-flex align-items-center justify-content-end">
-                <button style="font-size: 10px;">Modificar Nombre</button> <!--Esto debe ir dentro del innerHTML-->
+                <button style="font-size: 10px;">Modificar Nombre</button>
+                <!--Esto debe ir dentro del innerHTML-->
             </div>
         </div>
     </section>
 
-
-    <div class="container">
-        <h3>Seleccione el nombre de la rifa:</h3>
-        <select name="rifas" id="rifas"></select>
-        <button id="btnRifa">Cargar Números</button>
-    </div>
+    <section class="container">
+        <div>
+            <h3>Seleccione el nombre de la rifa:</h3>
+            <select name="rifas" id="rifas"></select>
+            <button id="btnRifa">Cargar Números</button>
+        </div>
+    </section>
 
     <div id="referencias" class="container d-flex justify-content-around align-items-center flex-wrap">
-        
+
         <div class="d-inline-flex align-items-center justify-content-center">
-            <div class="estiloDeNumero disponible d-flex align-items-center justify-content-center">
+            <div class="estiloDeNumero circuloBlanco d-flex align-items-center justify-content-center">
                 <p>Blanco</p>
             </div>
-            <p> : Disponible</p>
+            <p class="txtDisponible"> : Disponible</p>
         </div>
         <div class="d-inline-flex align-items-center justify-content-center">
             <div class="estiloDeNumero reservado d-flex align-items-center justify-content-center">
                 <p>Amarillo</p>
             </div>
-            <p> : Reservado</p>
+            <p class="txtReservado"> : Reservado</p>
         </div>
         <div class="d-inline-flex align-items-center justify-content-center">
             <div class="estiloDeNumero pagado d-flex align-items-center justify-content-center">
                 <p>Celeste</p>
             </div>
-            <p> : Pagado</p>
+            <p class="txtPagado"> : Pagado</p>
+        </div>
+        <div class="d-inline-flex align-items-center justify-content-center">
+            <div class="estiloDeNumero circuloNaranja d-flex align-items-center justify-content-center">
+                <p>Naranja</p>
+            </div>
+            <p class="txtSeleccionado"> : Seleccionado</p>
+        </div>
+    </div>
+
+    <div id="grillaDeNumeros" class="container d-flex justify-content-around align-items-center flex-wrap">
+
+        <div class="estiloDeNumero disponible">
+            1
+        </div>
+        <div class="estiloDeNumero reservado">
+            2
+        </div>
+        <div class="estiloDeNumero pagado">
+            3
         </div>
 
     </div>
 
-    <div id="grillaDeNumeros" class="container d-flex justify-content-around align-items-center flex-wrap">
-        
-                        <div class="estiloDeNumero disponible">
-                            1
-                        </div>
-                        <div class="estiloDeNumero reservado">
-                            2
-                        </div>
-                        <div class="estiloDeNumero pagado">
-                            3
-                        </div>
+    <section class="container">
+        <h2  class="centrarTexto">
+            Resumen de los números elegidos
+        </h2>
+        <div id="aComprar">
+            <p class="centrarTexto">Has elegido los números 01, 02, 03, 04.</p>
+            <p class="centrarTexto">Dichos números se reservan a nombre de Pedro José.</p>
+            <p class="centrarTexto">Tus datos de contacto son: 1234567890 y pedrojosé@gmail.com</p>
+            <p class="centrarTexto">El total a abonar es $1.200.-</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-around">
+            <p>Si todo está OK, dale click a RESERVAR</p>
+            <button name="reservar" id="reservar">Reservar</button>
+        </div>
+    </section>
+    <section class="container bgSecundario">
+        <h4 class="centrarTexto">Muchas gracias Pedro José por estar colaborando con Grupo Scout Laureano Baudizzone. </h4>
+        <p class="centrarTexto">El beneficiario ya recibió un mail con la compra, así que se estará comunicando con vos para comentarte si ganaste.</p>
+        <p class="centrarTexto">¡Gracias por su solidaridad!</p>
+    </section>
 
-    </div>
+    <footer class="container">
+        <div class="d-flex align-items-center">
+            <div>
+                <i class="fa-solid fa-seedling fa-5x"></i>
+            </div>
+            <div>
+                <h2>Tomá Suerte</h2>
+                <h3>es una iniciativa de</h3>
+                <h3>hande.ar</h3>
+            </div>
+        </div>
+        <div>
 
-    <div id="aComprar">
+        </div>
+    </footer>
 
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
- 
     <script src="./js/main.js"></script>
 
 </body>
+
 </html>

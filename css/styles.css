@@ -72,12 +72,12 @@ p {
   text-align: justify;
 }
 p a {
-  color: #adb932;
+  color: #fdcae1;
   font-weight: bolder;
   text-decoration: none;
 }
 p a:hover {
-  color: #d1da77;
+  color: white;
   text-decoration: underline;
 }
 
@@ -97,7 +97,7 @@ p a:hover {
 }
 
 header {
-  background-color: #ffd07f;
+  background-color: #84b6f4;
   border-radius: 7vw;
   margin-top: 1vw;
   margin-bottom: 1vw;
@@ -105,87 +105,59 @@ header {
 header div {
   margin-left: 1vw;
 }
-header nav {
+header div nav {
   display: inline-block;
   padding: 5px;
 }
-header nav ul li {
+header div nav ul {
+  list-style-type: none;
+}
+header div nav ul li {
   font-size: 1.5rem;
   text-align: end;
+  text-decoration: none;
 }
-header nav ul li a {
+header div nav ul li a {
   color: white;
 }
-
-.logo {
-  width: 150px;
-}
-
-.navBox {
-  background-color: #adb932;
-}
-.navBox:hover {
-  background-color: #d1da77;
+header div nav ul li a:hover {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 main {
-  background-color: #adb932;
-  color: white;
-  padding: 0;
+  background-color: #fdcae1;
+  color: black;
+  padding: 2vw 0;
   margin-bottom: 1vw;
-}
-main div {
-  padding: 0;
-}
-main div div {
-  padding: 0;
-}
-main div div h2 {
-  font-size: 3rem;
-  display: inline-block;
-  z-index: 3;
-}
-main div div div {
-  width: fit-content;
-}
-main div div div p {
-  font-size: 3rem;
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-  text-align: left;
-}
-main div div img {
-  padding: 0;
-  border-radius: 50% 0 0 50%;
-  width: 100%;
+  border-radius: 5vw;
 }
 
 section {
-  background-color: #fff5e5;
+  background-color: #e2eefc;
   margin-bottom: 1vw;
+  margin-top: 1vw;
+  padding: 2.5vw 0;
+  border-radius: 5vw;
 }
 section h2 {
   font-weight: bold;
   padding: 10px 0;
 }
-section div div div iframe {
-  width: 100%;
-  padding: 0;
-}
-section div div div img {
-  width: 100%;
-  border-radius: 0 50% 50% 0;
-}
-
-.padding10px {
-  padding: 10px;
-}
 
 footer {
-  background-color: #ffd07f;
+  background-color: #84b6f4;
   color: black;
-  margin-top: 10px;
+  border-radius: 7vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+footer div {
+  margin-left: 1vw;
+}
+footer div div h2 {
+  margin: 0;
+  padding: 0;
 }
 footer div div div p {
   font-size: 1.5rem;
@@ -201,15 +173,15 @@ footer div div div p a i {
   font-size: xx-large;
 }
 footer div div div p a:hover {
-  color: #adb932;
+  color: #fdcae1;
 }
 footer div div div i {
   padding: 5px;
 }
 
 .tarjeta {
-  border: 5px solid #adb932;
-  background-color: #adb932;
+  border: 5px solid #fdcae1;
+  background-color: #fdcae1;
   border-radius: 8px;
   padding: 5px;
   margin: 15px 5px;
@@ -223,13 +195,13 @@ footer div div div i {
 }
 
 .tarjeta:hover {
-  background-color: #fafbef;
+  background-color: white;
   transform: scale(1.03);
 }
 
 .botonVamos {
-  background-color: #ffd07f;
-  border: 3px #ffd07f solid;
+  background-color: #84b6f4;
+  border: 3px #84b6f4 solid;
   display: inline-block;
   color: black;
   font-weight: bolder;
@@ -239,7 +211,7 @@ footer div div div i {
 }
 .botonVamos:hover {
   transform: translateX(10px);
-  background-color: #fff5e5;
+  background-color: #e2eefc;
   text-decoration: underline;
   font-variant: small-caps;
   color: black;
@@ -259,7 +231,6 @@ footer div div div i {
 .disponible {
   background-color: white;
 }
-
 .disponible:hover {
   font-weight: bold;
   text-decoration: underline;
@@ -276,14 +247,21 @@ footer div div div i {
 .seleccionado {
   background-color: orange;
 }
-
 .seleccionado:hover {
   font-weight: bold;
   text-decoration: underline;
 }
 
+.circuloBlanco {
+  background-color: white;
+}
+
+.circuloNaranja {
+  background-color: orange;
+}
+
 .bgSecundario {
-  background-color: #f3f5db;
+  background-color: #fee3ef;
 }
 
 .parallax {
@@ -325,7 +303,7 @@ footer div div div i {
   bottom: 10px;
   padding: 10px;
   border: 2px solid white;
-  background-color: #ffd07f;
+  background-color: #84b6f4;
   text-align: center;
   transition: 0.5s;
   color: white;
@@ -333,9 +311,9 @@ footer div div div i {
   border-radius: 10px;
 }
 .btnVolver:hover {
-  color: #adb932;
+  color: #fdcae1;
   --bs-link-hover-color:$color-secundario;
-  border: 2px solid #adb932;
+  border: 2px solid #fdcae1;
 }
 
 #sinNumeros {
