@@ -48,7 +48,6 @@ h1 {
 h2 {
   font-size: 2.75rem;
   font-weight: bolder;
-  padding: 10px 0;
 }
 
 h3 {
@@ -179,42 +178,19 @@ footer div div div i {
   padding: 5px;
 }
 
-.tarjeta {
-  border: 5px solid #fdcae1;
-  background-color: #fdcae1;
-  border-radius: 8px;
-  padding: 5px;
-  margin: 15px 5px;
-  width: 30%;
-  transition: 500ms;
-}
-@media screen and (max-width: 768px) {
-  .tarjeta {
-    width: 45%;
-  }
-}
-
-.tarjeta:hover {
-  background-color: white;
-  transform: scale(1.03);
-}
-
-.botonVamos {
-  background-color: #84b6f4;
-  border: 3px #84b6f4 solid;
+#reservar {
+  background-color: #f968a9;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-  color: black;
-  font-weight: bolder;
-  font-size: x-large;
-  padding: 5px;
+  font-weight: bold;
   transition: 500ms;
 }
-.botonVamos:hover {
-  transform: translateX(10px);
-  background-color: #e2eefc;
+#reservar:hover {
   text-decoration: underline;
-  font-variant: small-caps;
-  color: black;
+  transform: scale(1.03);
 }
 
 .estiloDeNumero {
@@ -258,6 +234,10 @@ footer div div div i {
 
 .circuloNaranja {
   background-color: orange;
+}
+
+.ocultar {
+  visibility: hidden;
 }
 
 .bgSecundario {
@@ -335,7 +315,7 @@ footer div div div i {
 }
 
 #aComprar {
-  padding: 5vw 5%;
+  padding: 3%;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/4d3d764a3f.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <title>Venta de Bono Colaboración</title>
 </head>
 
 <body>
-    <header class="container d-flex justify-content-between align-items-center">
+    <header id="Home" class="container d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
             <div>
                 <i class="fa-solid fa-seedling fa-5x"></i>
@@ -25,9 +25,9 @@
         <div class="pe-5">
             <nav>
                 <ul>
-                    <li>Home</li>
-                    <li>Nuevo Sorteo</li>
-                    <li>Contacto</li>
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#NuevoSorteo">Nuevo Sorteo</a></li>
+                    <li><a href="mailto:hola@hande.ar">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -38,24 +38,28 @@
         <p class="centrarTexto">Porque todos los sorteos que ves acá atienden a una causa benéfica. En esta web sólo
             encontrarás Talonarios asociados a Bonos Colaboración de ONGs. Y creeme que colaborar con ellas, te hace
             canchero. Y a ellas, suertudas.</p>
+        <article id="ganadores" class="p-5">
+            <h3>Revisemos ganadores de Sorteos Anteriores:</h3>
+            <p>12/12/22 - Bono del Cristo Redentor <i class="fa-solid fa-angles-right"></i> Ganador: 12 - La Mona Jimenez</p>
+        </article>
     </main>
     <section class="container">
         <h2 class="centrarTexto">¡Bien, empecemos!</h2>
-        <div id="datos" class="row d-inline-flex justify-content-around">
+        <div id="datos" class="row d-inline-flex justify-content-around mb-5">
             <div class="d-inline-flex align-items-center justify-content-center col-12 col-md-6 p-2">
-                <p>
+                <p class="p-2">
                     ¿Cómo es tu nombre?
                 </p>
                 <input type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
             </div>
             <div class="d-inline-flex align-items-center justify-content-center col-12 col-md-6 p-2">
-                <p>
-                    ¿Cuál es tu <span><i class="fa-brands fa-whatsapp"></i></span>?
+                <p class="p-2">
+                    ¿Cuál es tu <span><i class="fa-brands fa-whatsapp fa-2x"></i></span>?
                 </p>
                 <input id="wapp" type="text" name="wapp" placeholder="3764 123456">
             </div>
             <div class="d-inline-flex align-items-center justify-content-center col-12 col-md-6 p-2">
-                <p>
+                <p class="p-2">
                     ¿Y tu correo?
                 </p>
                 <input id="email" type="email" name="email" placeholder="mi@correo.com">
@@ -72,7 +76,7 @@
     </section>
 
     <section class="container">
-        <div>
+        <div class="d-flex p-2 justify-content-around">
             <h3>Seleccione el nombre de la rifa:</h3>
             <select name="rifas" id="rifas"></select>
             <button id="btnRifa">Cargar Números</button>
@@ -132,17 +136,16 @@
             <p class="centrarTexto">El total a abonar es $1.200.-</p>
         </div>
         <div class="d-flex align-items-center justify-content-around">
-            <p>Si todo está OK, dale click a RESERVAR</p>
+            <p id="cajaReserva">Si todo está OK, dale click a RESERVAR</p>
             <button name="reservar" id="reservar">Reservar</button>
         </div>
     </section>
-    <section class="container bgSecundario">
-        <h4 class="centrarTexto">Muchas gracias Pedro José por estar colaborando con Grupo Scout Laureano Baudizzone. </h4>
-        <p class="centrarTexto">El beneficiario ya recibió un mail con la compra, así que se estará comunicando con vos para comentarte si ganaste.</p>
-        <p class="centrarTexto">¡Gracias por su solidaridad!</p>
+    <section id="compraFinalizada" class="container bgSecundario">
+        
     </section>
 
     <footer class="container">
+        <div class="d-inline-flex justify-content-between">
         <div class="d-flex align-items-center">
             <div>
                 <i class="fa-solid fa-seedling fa-5x"></i>
@@ -153,15 +156,16 @@
                 <h3>hande.ar</h3>
             </div>
         </div>
-        <div>
-
-        </div>
+        <div id="NuevoSorteo" class="d-inline-flex pe-5" style="width: 30%;">
+            <p>
+                Si apoyás una causa benéfica y querés que te ayudemos a gestionar tu Bono por este medio, escribinos un mail a <a href="mailto:hola@hande.ar">hola@hande.ar</a> para que lo incluyamos en la lista.
+            </p>
+        </div></div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.1.1/build/global/luxon.min.js"></script>
     <script src="./js/main.js"></script>
 
 </body>

@@ -1,0 +1,37 @@
+[
+    {
+        "nombre" : "Sorteo Especial de Pascuas",
+        "cantNumeros" : "200",
+        "fechaSorteo" : "01/04/2022",
+        "precio" : "$150",
+        "ganador" : "16 - La Mona Jimenez"
+    },
+    {
+        "nombre" : "Día del Niño",
+        "cantNumeros" : "100",
+        "fechaSorteo" : "01/07/2022",
+        "precio" : "$350",
+        "ganador" : "25 - Mirtha Legrand"
+    },
+    {
+        "nombre" : "Día del Animal",
+        "cantNumeros" : "50",
+        "fechaSorteo" : "01/04/2022",
+        "precio" : "$120",
+        "ganador" : "01 - Tequila María"
+    },
+    {
+        "nombre" : "Sorteo Especial Día de la Madre",
+        "cantNumeros" : "75",
+        "fechaSorteo" : "20/10/2022",
+        "precio" : "$1000",
+        "ganador" : "44 - Maru Botana"
+    },
+    {
+        "nombre" : "Sorteo Colaboración Escuela N°5 Anibal Fernandez",
+        "cantNumeros" : "100",
+        "fechaSorteo" : "01/09/2022",
+        "precio" : "$950",
+        "ganador" : "99 - Manuel Belgrano"
+    }    
+]
